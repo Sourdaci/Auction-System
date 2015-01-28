@@ -37,7 +37,22 @@ public class Auction{
             System.out.println(lot.toString());
         }
     }
-
+    
+    // Muestra los detalles de todos los elementos que estan en subasta
+    // Si alguno tiene pujas, debe mostrarse su informacion
+    // Si no, indicar que no hay pujas
+    public void close(){
+        for(Lot articulo : lots){
+            Bid puja = articulo.getHighestBid();
+            if (puja != null){
+                System.out.println("-> Maximo pujador: " + puja.getBidder().getName());
+            }else{
+                System.out.println("-> No hay pujas");
+            }
+            System.out.println(articulo.toString() + "\n");
+        }
+    }
+    
     /**
      * Make a bid for a lot.
      * A message is printed indicating whether the bid is
