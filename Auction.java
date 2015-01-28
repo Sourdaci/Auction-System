@@ -97,20 +97,23 @@ public class Auction{
     public Lot getLot(int lotNumber){
         if((lotNumber >= 1) && (lotNumber < nextLotNumber)) {
             // The number seems to be reasonable.
-            Lot selectedLot = lots.get(lotNumber - 1);
-            // Include a confidence check to be sure we have the
-            // right lot.
-            if (selectedLot != null){
-                if(selectedLot.getNumber() != lotNumber) {
-                    System.out.println("Internal error: Lot number " +
-                        selectedLot.getNumber() +
-                        " was returned instead of " +
-                        lotNumber);
-                    // Don't return an invalid lot.
-                    selectedLot = null;
+            try {
+                Lot selectedLot = lots.get(lotNumber - 1);// Include a confidence check to be sure we have the
+                // right lot.
+                if (selectedLot != null){
+                    if(selectedLot.getNumber() != lotNumber) {
+                        System.out.println("Internal error: Lot number " +
+                            selectedLot.getNumber() + " was returned instead of " + lotNumber);
+                        System.out.println("El lote: " + lotNumber + " fue borrado en algun momento.");
+                        // Don't return an invalid lot.
+                        selectedLot = null;
+                    }
+                    return selectedLot;
+                }else{
+                    System.out.println("El lote: " + lotNumber + " fue borrado en algun momento.");
+                    return null;
                 }
-                return selectedLot;
-            }else{
+            }catch (IndexOutOfBoundsException ioob){
                 System.out.println("El lote: " + lotNumber + " fue borrado en algun momento.");
                 return null;
             }
@@ -118,6 +121,21 @@ public class Auction{
             System.out.println("Lot number: " + lotNumber +
                 " does not exist.");
             return null;
+        }
+    }
+    
+    public void removeLot(int lotNumber){
+        if((lotNumber >= 1) && (lotNumber < nextLotNumber)) {
+            // The number seems to be reasonable.
+            // Include a confidence check to be sure we have the right lot.
+            if (lots.get(lotNumber - 1) != null){
+                lots.remove(lotNumber - 1);
+                System.out.println("El lote ha sido borrado satisfactoriamente");
+            }else{
+                System.out.println("El lote: " + lotNumber + " fue borrado en algun momento.");
+            }
+        }else{
+            System.out.println("Lot number: " + lotNumber + " does not exist.");
         }
     }
 }

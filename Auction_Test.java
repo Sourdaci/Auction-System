@@ -54,6 +54,12 @@ public class Auction_Test
         subasta.enterLot("Calendario PlayBoy");
         subasta.enterLot("Calendario Woman's Secret");
         subasta.enterLot("Calendario Los Chicos del Coro");
-        System.out.println(subasta.getLot(2).toString());
+        subasta.removeLot(4);
+        Lot articulo = subasta.getLot(4);
+        if (articulo != null){
+            System.out.println(articulo.toString());
+        }else{
+            System.out.println("Articulo borrado en el pasado");
+        }
     }
 }
