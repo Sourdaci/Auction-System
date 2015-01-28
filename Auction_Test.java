@@ -48,4 +48,12 @@ public class Auction_Test
             System.out.println(articulo.toString());
         }
     }
+    
+    public void pruebaMetodoGetLotConBorrado(){
+        subasta.enterLot("Calendario Pirelli");
+        subasta.enterLot("Calendario PlayBoy");
+        subasta.enterLot("Calendario Woman's Secret");
+        subasta.enterLot("Calendario Los Chicos del Coro");
+        System.out.println(subasta.getLot(2).toString());
+    }
 }
