@@ -58,8 +58,6 @@ public class Auction_Test
         Lot articulo = subasta.getLot(4);
         if (articulo != null){
             System.out.println(articulo.toString());
-        }else{
-            System.out.println("Articulo borrado en el pasado");
         }
     }
 }
