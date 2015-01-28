@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 /**
  * Write a description of class Auction_Test here.
  * 
@@ -32,5 +32,20 @@ public class Auction_Test
         subasta.makeABid(2, pepe, 18L);
         subasta.makeABid(3, piti, 22L);
         subasta.close();
+    }
+    
+    public void pruebaMetodoGetUnsold()
+    {
+        subasta.enterLot("Calendario Pirelli");
+        subasta.enterLot("Calendario PlayBoy");
+        subasta.enterLot("Calendario Woman's Secret");
+        subasta.enterLot("Calendario Los Chicos del Coro");
+        subasta.makeABid(1, paco, 20L);
+        subasta.makeABid(2, pepe, 18L);
+        subasta.makeABid(3, piti, 22L);
+        ArrayList<Lot> sinPujas = new ArrayList<Lot>(subasta.getUnsold());
+        for (Lot articulo : sinPujas){
+            System.out.println(articulo.toString());
+        }
     }
 }

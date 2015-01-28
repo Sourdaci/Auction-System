@@ -53,6 +53,17 @@ public class Auction{
         }
     }
     
+    // Muestra los detalles de los articulos por los que no se ha pujado
+    public ArrayList<Lot> getUnsold(){
+        ArrayList<Lot> sinPujas = new ArrayList<Lot>();
+        for(Lot articulo : lots){
+            if (articulo.getHighestBid() == null){
+                sinPujas.add(articulo);
+            }
+        }
+        return sinPujas;
+    }
+    
     /**
      * Make a bid for a lot.
      * A message is printed indicating whether the bid is
