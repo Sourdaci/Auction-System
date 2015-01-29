@@ -123,17 +123,19 @@ public class Auction{
         return articulo;
     }
     
-    public void removeLot(int lotNumber){
+    public Lot removeLot(int lotNumber){
+        Lot articulo = null;
         if((lotNumber >= 1) && (lotNumber < nextLotNumber)) {
             boolean borrado = false; // comprobacion de borrado, inicialmente NO
             boolean superado = false; // comprobacion de superado, inicialmente NO
-            int numeroID; // identificador del articulo
+            int numeroID;
             Iterator<Lot> iterador = lots.iterator(); // recorre los articulos
             while (iterador.hasNext() && !borrado && !superado){
                 // mientras haya articulos entre los que buscar....
                 // no se acabe de borrar el articulo...
                 // y no se haya superado el identificador buscado
-                numeroID = iterador.next().getNumber();
+                articulo = iterador.next();
+                numeroID = articulo.getNumber();
                 if(numeroID == lotNumber){
                     // si hemos encontrado el identificador que queremos borrar
                     iterador.remove();
@@ -146,10 +148,12 @@ public class Auction{
             if (borrado){ // si hemos borrado AHORA el articulo buscado
                 System.out.println("El articulo " + lotNumber + " se ha borrado satisfactoriamente");
             }else{ // si el articulo ha sido borrado antes
+                articulo = null;
                 System.out.println("El articulo " + lotNumber + " fue borrado anteriormente");
             }
         }else{
             System.out.println("Lot number: " + lotNumber + " does not exist.");
         }
+        return articulo;
     }
 }
